@@ -7,7 +7,6 @@ namespace WebCourse.Data
     {
         public DataContext(DbContextOptions options) : base(options)
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

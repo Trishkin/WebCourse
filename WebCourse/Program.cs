@@ -7,14 +7,13 @@ builder.Services.AddDbContext<DataContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-// Add services to the container.
+builder.Services.AddCors();
 
 builder.Services.AddControllers();
 
 var app = builder.Build();
-app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseCors(builder => builder.AllowAnyHeader().AllowAnyOrigin().WithOrigins("http://localhost:4200", "https://localhost:4200"));
 
 app.MapControllers();
 
